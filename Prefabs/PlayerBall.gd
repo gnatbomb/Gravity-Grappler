@@ -1,18 +1,23 @@
-extends RigidBody2D
+extends KinematicBody2D
 
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var max_speed = 400
+var max_speed = 500
 var acceleration = 200
 var current_grav = Vector2.ZERO
-var grav_intensity = 40
+var grav_intensity = 25
 var velocity = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
+	
+func start(pos):
+	position = pos
+	show()
+	$CollisionShape2D.disabled = false
 
 func handle_input():
 	if Input.is_action_pressed("grav_left"):

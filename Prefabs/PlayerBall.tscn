@@ -5,10 +5,11 @@
 
 [sub_resource type="CircleShape2D" id=1]
 
-[node name="PlayerBall" type="RigidBody2D"]
-mass = 0.00102041
-gravity_scale = 0.0
+[node name="PlayerBall" type="KinematicBody2D"]
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

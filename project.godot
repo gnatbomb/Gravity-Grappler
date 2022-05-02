@@ -10,9 +10,15 @@ config_version=4
 
 [application]
 
-config/name="Swing Game"
+config/name="Gravity-Grappler"
 run/main_scene="res://Prefabs/PlayerBall.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1600
+window/size/height=900
+window/size/resizable=false
 
 [input]
 
