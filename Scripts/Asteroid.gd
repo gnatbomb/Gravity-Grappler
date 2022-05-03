@@ -1,5 +1,5 @@
 extends "res://Scripts/Gravity_Object.gd"
-signal hit
+
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -8,15 +8,12 @@ signal hit
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	grav_intensity = 30
+	radius = 9
+	bounce = -0.95
+	max_speed = 700
+	grav_intensity = 20
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-
-
-
-func _on_Player_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
-	print("outchie")
-	pass # Replace with function body.
