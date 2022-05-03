@@ -4,7 +4,7 @@ extends KinematicBody2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var max_speed = 90000
+var max_speed = 900
 var acceleration = 200
 var current_grav = Vector2.ZERO
 var grav_intensity = 25
@@ -79,7 +79,6 @@ func update_position(delta):
 func _process(delta):
 	handle_input()
 	handle_gravity()
-	
 	update_position(delta)
 	
 	

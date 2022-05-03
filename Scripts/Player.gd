@@ -1,19 +1,15 @@
-extends Node
+extends "res://Scripts/Gravity_Object.gd"
 
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var width = 1600
-var height = 900
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	new_game()
+	pass # Replace with function body.
 
-func new_game():
-	$PlayerBall.start($StartPosition.position)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
