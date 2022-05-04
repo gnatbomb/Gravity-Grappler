@@ -1,7 +1,7 @@
 extends "res://Scripts/Gravity_Object.gd"
 signal hit
 
-var well_intensity = 40
+var well_intensity = 70
 
 
 # Declare member variables here. Examples:
@@ -12,6 +12,7 @@ var well_intensity = 40
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	grav_intensity = 30
+	max_speed = 1100
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,15 +20,14 @@ func _ready():
 #	pass
 
 func gravity_pull(pos):
-	if position.x < pos.x:
-		velocity.x += well_intensity
-	else:
-		velocity.x -= well_intensity
-		
-	if position.y < pos.y:
-		velocity.y += well_intensity
-	else:
-		velocity.y -= well_intensity
+	var hypotenuse = position.distance_to(pos)
+	var xdist = position.x - pos.x
+	var ydist = position.y - pos.y
+	velocity.x -= well_intensity * (xdist / hypotenuse)
+	velocity.y -= well_intensity * (ydist / hypotenuse)
+	
+	
+
 
 
 func _on_Player_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
