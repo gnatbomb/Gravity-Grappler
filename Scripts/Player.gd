@@ -32,11 +32,12 @@ func gravity_pull(pos):
 
 func _on_Player_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
 	var aname = area.get_name()
-	if aname[0] == "A":
-		print("A")
+	if aname[0] == "A" or aname[1] == "A":
+		get_parent().remove_child(area)
 	elif aname[0] == "G":
 		print("G")
-	elif aname[0] == "S":
+	elif aname[0] == "S" or aname[1] == "S":
 		get_parent().remove_child(area)
 		get_parent().spawn_star(position)
 		get_parent().spawn_asteroid(position)
+	print(aname)
