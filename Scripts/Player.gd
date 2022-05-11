@@ -46,7 +46,7 @@ func _on_Player_area_shape_entered(area_rid, area, area_shape_index, local_shape
 	var aname = area.get_name()
 	if aname[0] == "A" or aname[1] == "A":
 		get_parent().remove_child(area)
-		get_parent().increment_health(-1)
+		get_parent().increment_health(-2)
 	elif aname[0] == "S" or aname[1] == "S":
 		get_parent().increment_score(200)
 		get_parent().increment_health(1)

@@ -85,8 +85,7 @@ func increment_score(amount):
 	score += amount
 		
 func game_over():
-	print("Game Over")
-	health = max_health
+	get_tree().change_scene("res://Scenes/MainMenu.tscn")
 	
 func update_gui():
 	$ScoreLabel.text = "Score: " + str(score)
