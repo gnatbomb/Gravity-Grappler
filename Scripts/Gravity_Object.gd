@@ -25,33 +25,17 @@ func start(pos):
 	show()
 	$CollisionShape2D.disabled = false
 
-func handle_input():
-	if Input.is_action_pressed("grav_left"):
-		current_grav.x = -grav_intensity
-		current_grav.y = 0
-	if Input.is_action_pressed("grav_right"):
-		current_grav.x = grav_intensity
-		current_grav.y = 0
-	if Input.is_action_pressed("grav_up"):
-		current_grav.x = 0
-		current_grav.y = -grav_intensity
-	if Input.is_action_pressed("grav_down"):
-		current_grav.x = 0
-		current_grav.y = grav_intensity
-		
 
-func handle_gravity():
-	velocity.x += current_grav.x
-	velocity.y += current_grav.y
+func check_velocity():
 	if velocity.x > max_speed:
 		velocity.x = max_speed
-	if velocity.y > max_speed:
-		velocity.y = max_speed
 	if velocity.x < -max_speed:
 		velocity.x = -max_speed
+		
+	if velocity.y > max_speed:
+		velocity.y = max_speed
 	if velocity.y < -max_speed:
 		velocity.y = -max_speed
-		
 		
 func update_position(delta):
 	position += velocity * delta
@@ -77,8 +61,7 @@ func update_position(delta):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	handle_input()
-	handle_gravity()
+	check_velocity()
 	update_position(delta)
 	
 	

@@ -13,6 +13,9 @@ var rng = RandomNumberGenerator.new()
 var starsize = 60
 var star_scene = load("res://Prefabs/Star.tscn")
 var asteroid_scene = load("res://Prefabs/Asteroid.tscn")
+var score = 0
+var health = 5
+var max_health = 5
 
 
 # Called when the node enters the scene tree for the first time.
@@ -26,11 +29,14 @@ func new_game():
 	$Player.start($StartPosition.position)
 	$Gravity_Well_1.start(Vector2(width / 4, height / 2))
 	$Gravity_Well_2.start(Vector2(width * 3 / 4, height / 2))
+	$ScoreLabel.rect_position = Vector2(width - 250, height - 50)
+	$HealthLabel.rect_position = Vector2(20, height - 50)
 	wells = [$Gravity_Well_1, $Gravity_Well_2]
 	spawn_star($Player.position)
 	
 func handle_input():
 	if Input.is_action_pressed("activate_grav"):
+		closest_well()
 		$Player.gravity_pull(close_well.position)
 	
 func closest_well():
@@ -57,18 +63,36 @@ func spawn_asteroid(pos):
 	var randpos = Vector2(rng.randf_range(starsize, width - starsize),
 	rng.randf_range(starsize, height - starsize))
 	
-	while pos.distance_to(randpos) <= 700:
+	while pos.distance_to(randpos) <= 600:
 		randpos = Vector2(rng.randf_range(starsize, width - starsize),
 			rng.randf_range(starsize, height - starsize))
 			
 	var asteroid = asteroid_scene.instance() 
 	asteroid.position = randpos
-	var randvel = Vector2(rng.randf_range(0, 70),
-		rng.randf_range(0, 70))
+	var randvel = Vector2(rng.randf_range(10, 120),
+		rng.randf_range(10, 120))
 	asteroid.velocity = randvel
 	add_child(asteroid)
+	
+func increment_health(amount):
+	health += amount
+	if health > max_health:
+		health = max_health
+	elif health < 1:
+		game_over()
+		
+func increment_score(amount):
+	score += amount
+		
+func game_over():
+	print("Game Over")
+	health = max_health
+	
+func update_gui():
+	$ScoreLabel.text = "Score: " + str(score)
+	$HealthLabel.text = "Health: " + str(health)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	closest_well()
+	update_gui()
 	handle_input()

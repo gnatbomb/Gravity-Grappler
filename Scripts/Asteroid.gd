@@ -9,9 +9,8 @@ extends "res://Scripts/Gravity_Object.gd"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	radius = 9
-	bounce = -0.95
+	bounce = -0.99
 	max_speed = 700
-	grav_intensity = 20
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
