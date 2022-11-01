@@ -26,6 +26,7 @@ func gravity_pull(pos):
 	velocity.x -= well_intensity * (xdist / hypotenuse)
 	velocity.y -= well_intensity * (ydist / hypotenuse)
 	
+	
 
 func handle_input(delta):
 	if Input.is_action_pressed("grav_left"):
@@ -47,10 +48,12 @@ func _on_Player_area_shape_entered(area_rid, area, area_shape_index, local_shape
 	if aname[0] == "A" or aname[1] == "A":
 		get_parent().remove_child(area)
 		get_parent().increment_health(-2)
+		MusicController.play_SE("asteroid")
 	elif aname[0] == "S" or aname[1] == "S":
 		get_parent().increment_score(200)
 		get_parent().increment_health(1)
 		get_parent().remove_child(area)
 		get_parent().spawn_star(position)
 		get_parent().spawn_asteroid(position)
+		MusicController.play_SE("star")
 

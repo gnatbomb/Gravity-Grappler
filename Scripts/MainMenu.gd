@@ -8,7 +8,7 @@ extends MarginContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	MusicController.play_title()
 
 
 
@@ -18,4 +18,5 @@ func _ready():
 
 
 func new_game():
+	MusicController.play_SE("star")
 	get_tree().change_scene("res://Scenes/Game.tscn")

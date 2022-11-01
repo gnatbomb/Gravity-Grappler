@@ -23,6 +23,7 @@ func _ready():
 	width = get_viewport().size.x
 	height = get_viewport().size.y
 	rng.randomize()
+	MusicController.play_music()
 	new_game()
 
 func new_game():
@@ -38,6 +39,10 @@ func handle_input():
 	if Input.is_action_pressed("activate_grav"):
 		closest_well()
 		$Player.gravity_pull(close_well.position)
+		MusicController.play_well(1)
+	else:
+		MusicController.play_well(0)
+		
 	
 func closest_well():
 	close_well = wells[0]
@@ -85,6 +90,7 @@ func increment_score(amount):
 	score += amount
 		
 func game_over():
+	MusicController.play_well(0)
 	get_tree().change_scene("res://Scenes/MainMenu.tscn")
 	
 func update_gui():
